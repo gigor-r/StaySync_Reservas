@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
 
@@ -25,7 +24,6 @@ public class ReservaService {
 
     private final ReservaRepository reservaRepository;
     private final ReservaEventPublisher eventPublisher;
-    private final RestTemplate restTemplate;
 
     @Transactional
     @CircuitBreaker(name = "habitacionesCB", fallbackMethod = "crearFallback")
