@@ -28,13 +28,11 @@ public class CrearReservaRequest {
 
     @Min(value = 1, message = "Debe haber al menos 1 huésped")
     @Max(value = 10, message = "No se permiten más de 10 huéspedes por reserva")
-    @Builder.Default
     private Integer numHuespedes = 1;
 
     @Size(max = 500, message = "Las notas no pueden superar 500 caracteres")
     private String notas;
 
-    @lombok.Builder.Default
     private com.staysync.reservas.model.Reserva.FuenteReserva fuente =
             com.staysync.reservas.model.Reserva.FuenteReserva.DIRECTO;
 }
