@@ -32,6 +32,13 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.BAD_REQUEST, ex.getMessage(), req);
     }
 
+    @ExceptionHandler(CancelacionRestringidaException.class)
+    public ResponseEntity<ErrorResponse> handleCancelacionRestringida(CancelacionRestringidaException ex, WebRequest req) {
+        // 422 Unprocessable Entity: la petición es válida en forma pero no puede procesarse
+        // por una regla de negocio (ventana de cancelación cerrada).
+        return build(HttpStatus.UNPROCESSABLE_ENTITY, ex.getMessage(), req);
+    }
+
     @ExceptionHandler(ServicioNoDisponibleException.class)
     public ResponseEntity<ErrorResponse> handleServicioNoDisponible(ServicioNoDisponibleException ex, WebRequest req) {
         return build(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage(), req);
