@@ -24,6 +24,12 @@ public class ReservaController {
 
     private final ReservaService reservaService;
 
+    @GetMapping("/hoy")
+    @Operation(summary = "Reservas del día: CONFIRMADAS con entrada hoy (check-in) y todas en CHECKIN (check-out)")
+    public ResponseEntity<Object> getReservasHoy() {
+        return ResponseEntity.ok(reservaService.getReservasHoy());
+    }
+
     @GetMapping
     @Operation(summary = "Listar reservas con paginación y filtros")
     public ResponseEntity<Page<ReservaResponse>> listar(

@@ -8,6 +8,8 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,4 +27,22 @@ public class ReservaResponse {
     private FuenteReserva fuente;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    @Builder.Default
+    private List<HuespedAdicionalResponse> huespedesAdicionales = new ArrayList<>();
+
+    @Builder.Default
+    private String horaCheckin = "15:00";
+
+    @Builder.Default
+    private String horaCheckout = "12:00";
+
+    @Data
+    @Builder
+    public static class HuespedAdicionalResponse {
+        private Long id;
+        private String nombre;
+        private String apellido;
+        private String documento;
+    }
 }

@@ -1,10 +1,13 @@
 package com.staysync.reservas.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Schema(description = "Datos para crear una nueva reserva")
@@ -35,4 +38,23 @@ public class CrearReservaRequest {
 
     private com.staysync.reservas.model.Reserva.FuenteReserva fuente =
             com.staysync.reservas.model.Reserva.FuenteReserva.DIRECTO;
+
+    @Valid
+    private List<HuespedAdicionalRequest> huespedesAdicionales = new ArrayList<>();
+
+    @Data
+    @Schema(description = "Datos de un huésped adicional")
+    public static class HuespedAdicionalRequest {
+
+        @NotBlank(message = "El nombre del huésped adicional es obligatorio")
+        @Size(max = 100)
+        private String nombre;
+
+        @NotBlank(message = "El apellido del huésped adicional es obligatorio")
+        @Size(max = 100)
+        private String apellido;
+
+        @Size(max = 50)
+        private String documento;
+    }
 }
